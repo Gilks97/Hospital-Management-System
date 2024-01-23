@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Pharmacy  Doctor Registration{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'signup.css' %}">
+<div class="container">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div><img src="{% static 'pharmacy-logo.png' %}" alt="logo" class="logo"></div>
+    {% for x in form %}
+    <div>
+      {% for err in x.errors %}
+      <p style="color:brown;background-color: aquamarine;">{{ err }}</p>
+      {% endfor %}
+    </div>
+    <p class="form-label">{{ x.label }}:</p>
+    <input class="form-field" type="{{ x.field.widget.input_type }}" name="{{ x.name }}" id="{{ x.auto_id }}" value="{{ x.value|default_if_none:'' }}">
+    {% endfor %}
+    <button class="form-btn" type="submit">Register</button>
+    <a class="password-reset" href="#">Forgot password?</a>
+  </form>
+  <div class="sign-up">
+    Already have an account? <a href="{% url 'login' %}">Sign In</a>
+  </div>
+</div>
+{% endblock %}

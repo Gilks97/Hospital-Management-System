@@ -1,0 +1,170 @@
+{% extends 'pages/admin_template/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+<h2>Dashboard</h2>
+
+<section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3>{{ all_department_count }}</h3>
+
+                  <p>Departments</p>
+                </div>
+                <div class="icon">
+                    <i class='bx bx-customize'></i>
+                </div>
+                <a href="{% url 'department' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            
+            <!-- ./col -->
+            
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3>{{ doctor_count }}</h3>
+
+                  <p>Doctors</p>
+                </div>
+                <div class="icon">
+                    <i class='bx bx-first-aid'></i>
+                </div>
+                <a href="{% url 'doctor' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>{{ nurse_count }}</h3>
+    
+                    <p>Nurses</p>
+                  </div>
+                  <div class="icon">
+                    <i class='bx bx-injection'></i>
+                  </div>
+                  <a href="{% url 'nurse' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>{{ nurse_count }}</h3>
+    
+                    <p>Pharmacist</p>
+                  </div>
+                  <div class="icon">
+                    <i class='bx bxs-capsule'></i>
+                  </div>
+                  <a href="{% url 'pharmacist' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3>{{ all_department_count }}</h3>
+                  <ion-icon name="pulse-outline"></ion-icon>
+                  <p>Patient</p>
+                </div>
+                <div class="icon">
+                    <i class='bx bx-pulse'></i>
+                </div>
+                <a href="{% url 'patient' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            
+            <!-- ./col -->
+            
+            <div class="col-lg-3 col-3">
+              <!-- small box -->
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3>{{ doctor_count }}</h3>
+
+                  <p>Laboratorist</p>
+                </div>
+                <div class="icon">
+                    <i class='bx bxs-vial'></i>
+                </div>
+                <a href="{% url 'laboratorist' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-3">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3>{{ nurse_count }}</h3>
+    
+                    <p>Accountant</p>
+                  </div>
+                  <div class="icon">
+                    <i class='bx bxs-coin-stack'></i>
+                  </div>
+                  <a href="{% url 'accountant' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-3">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3>{{ nurse_count }}</h3>
+    
+                    <p>Settings</p>
+                  </div>
+                  <div class="icon">
+                    <i class='bx bx-cog' ></i>
+                  </div>
+                  <a href="{% url 'settings' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            
+          </div>
+
+          <div class="card card-primary" style="max-width: 97%;">
+            <div class="card-header" >
+                <h3 class="card-title">Departments</h3>
+            </div>
+            <div class="card-body" style="max-width: 70%;">
+              <table style="border-collapse: collapse; width: 100%; border: 1px solid black;">
+                <tr>
+                  <th style="border: 1px solid black; padding: 8px; font-weight: bold;">ID</th>
+                  <th style="border: 1px solid black; padding: 8px; font-weight: bold;">Department Name</th>
+                  <th style="border: 1px solid black; padding: 8px; font-weight: bold;">Department Description</th>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid black; padding: 8px;">{{ department.id }}</td>
+                  <td style="border: 1px solid black; padding: 8px;">{{ department.department_name }}</td>
+                  <td style="border: 1px solid black; padding: 8px;">{{ department.department_description }}</td>
+                </tr>
+              </table>
+            </div>            
+        </div>
+          
+          
+        </div>
+          
+      </section> 
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  {% endblock custom_js %}

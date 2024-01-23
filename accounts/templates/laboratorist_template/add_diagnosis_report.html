@@ -1,0 +1,91 @@
+{% extends 'laboratorist_template/base_template.html' %}
+{% load static %}
+
+
+{% block custom_css %}
+
+  <style>
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4f9dea;
+      color: white;
+    }
+    </style>
+{% endblock custom_css %}
+    
+
+{% block main_content %}
+<div class="container">
+  <div class="row" style="justify-content: space-between; display: flex; align-items: center;">
+    <div class="col-md-10">
+      <h1>Diagnosis Report</h1>
+    </div>
+    <div class="col-md-2 text-end">
+      <button class="btn btn-primary text-align-end" type="submit"><a style="color: white;" href="{% url 'add_diagnosis' %}">Add Record</a></button>
+    </div>
+    
+    
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 table-responsive">
+      <table class="table  table-striped" id="customers">
+        <tr>
+            <th>#</th>
+            <th>Patient's Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Sample Taken</th>
+            <th>Findings</th>
+            <th>Time Taken</th>
+            <th>Action</th>
+        </tr>
+        <!-- <tr>
+            <td>1</td>
+            <td>Alan Mutheu</td>
+            <td>22</td>
+            <td>Nairobi, Kenya</td>
+            <td>Blood sample</td>
+            <td>Bacteria in the blood</td>
+            <td>11/07/2023 12:00 am</td>
+        </tr> -->
+        {% for reports in report %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td> {{reports.patients_name}} </td>
+            <td>{{reports.age}}</td>
+            <td>{{reports.address}}</td>
+            <td>{{reports.sample_taken}}</td>
+            <td>{{reports.findings}}</td>
+            <td>{{reports.timetaken}}</td>
+            <td>
+              <a type="button"class="btn btn-warning btn-sm" href="{%url 'edit_diagnosis_report' reports.id%}"> <iconify-icon icon="nimbus:edit"></iconify-icon></a>
+              <a type="button"class="btn btn-danger btn-sm" href="{% url 'delete_report' reports.id%}"> <iconify-icon icon="streamline:interface-delete-bin-2-remove-delete-empty-bin-trash-garbage"></iconify-icon></a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content%}

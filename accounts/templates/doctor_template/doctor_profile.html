@@ -1,0 +1,62 @@
+{% extends 'doctor_template/base_template.html' %}
+
+{% block page_title %}
+    Doctor Profile
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">My Profile</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-content" style="margin-left: 25px;">
+                        <div>
+                            <h3>Personal Information</h3>
+                            <p>Username: {{ doctor.admin.username }}</p>
+                            <p>Email: {{ doctor.admin.email }}</p>
+                            <p>First Name: {{ doctor.admin.first_name }}</p>
+                            <p>Last Name: {{ doctor.admin.last_name }}</p>
+                        </div>
+                        
+                        <div>
+                            <h3>Contact Information</h3>
+                            <p>Mobile: {{ doctor.mobile }}</p>
+                            <p>Address: {{ doctor.address }}</p>
+                        </div>
+
+                        <div>
+                            <h3>Department Information</h3>
+                            <p>Special: {{ doctor.special }}</p>
+                        </div>
+
+                        <div class="col">
+                            <a class="btn btn-primary" href="{% url 'edit_doctor_profile' %}" role="button">Edit Profile</a>
+                        </div>
+                        <br>
+
+
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+    {% block custom_js %}
+
+  {% endblock custom_js %}

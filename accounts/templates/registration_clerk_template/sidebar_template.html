@@ -1,0 +1,87 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #008080;" (Hex: #008080)>
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'dist/img/hicon4.jpg' %}" alt="TIBA Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-large">TIBA Hospital</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        
+        {% if user.registration_clerk.profile_pic %}
+            <img src="{{ user.registration_clerk.profile_pic.url }}" class="img-circle elevation-4" alt="Profile Picture" style="width: 100px; height: 100px;">
+        {% else %}
+            <img src="{% static 'profile_pics/default_profile_pic.jpeg' %}" alt="Default Profile Picture" style="width: 100px; height: 100px;">
+        {% endif %}
+        
+        <div class="info">
+          <a href={% url "registration_clerk_profile" %} class="d-block">{{user.username}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+              {% url 'registration_clerk_home' as registration_clerk_home %}
+              <a href="{{ registration_clerk_home }}" class="nav-link {% if request.path == registration_clerk_home %} active {% endif %}">
+                <i class='bx bxs-clinic'></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              {% url 'register_patient' as register_patient %}
+              <a href="{{ register_patient }}" class="nav-link {% if request.path == register_patient %} active {% endif %}">
+                <i class='bx bx-edit' ></i>
+                <p>
+                  Register Patient
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'registered_patient_list' as registered_patient_list %}
+              <a href="{{ registered_patient_list }}" class="nav-link {% if request.path == registered_patient_list %} active {% endif %}">
+                <i class='bx bx-notepad'></i>
+                <p>
+                  Registered Patients List
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'manage_appointment' as manage_appointment %}
+              <a href="{{ manage_appointment }}" class="nav-link {% if request.path == manage_appointment %} active {% endif %}">
+                <i class='bx bxs-calendar'></i>
+                  Manage Appointments
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'registration_clerk_profile' as registration_clerk_profile %}
+              <a href="{{ registration_clerk_profile }}" class="nav-link {% if request.path == registration_clerk_profile %} active {% endif %}">
+                <i class='bx bx-user-circle'></i>
+                <p>
+                  profile
+                </p>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>

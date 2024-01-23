@@ -1,0 +1,40 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}delete dispense{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="content" >
+    <div class="container-fluid">
+        <div class="card card-primary" style="max-width:600px;margin:0 auto ;border-radius:20px;">
+            <div class="card-header">
+                <h3>delete sale</h3>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% if messages %} 
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        <h1>Delete Dispense</h1>
+                        <h2>Are you sure you want to delete this dispense record?</h2>
+                        <p><strong>Medicine:</strong> {{ dispense.medicine }}</p>
+                        <p><strong>Quantity:</strong> {{ dispense.quantity }}</p>
+                        <p><strong>Dispense Date:</strong> {{ dispense.dispense_date }}</p>
+                        <p><strong>Remarks:</strong> {{ dispense.remarks }}</p>
+                        <p><strong>Taken:</strong> {% if dispense.taken %}Yes{% else %}No{% endif %}</p>
+                        
+                        
+                        <!-- Display other relevant fields as needed -->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger" style="margin-left: 4rem;">Delete</button>
+               <a href="{% url 'dispense_list' %}" class="btn btn-primary">cancel</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

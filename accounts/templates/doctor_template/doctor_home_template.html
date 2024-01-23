@@ -1,0 +1,91 @@
+{% extends 'doctor_template/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+<h2>Home</h2>
+
+<section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+
+            
+            <!-- ./col -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                    
+                    <p style="font-size: 22px;">Assigned Patients </p>
+                    <h3 style="font-size: 20px;">Patients : 1</h3>
+
+                    </div>
+                    <div class="icon">
+                        <i class='bx bxs-bed' style="font-size: 50px;"></i>
+                    
+                    </div>
+                    <a href="{% url 'assinged_patient' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                    <div class="inner">
+                        <p style="font-size: 22px;">Appointments</p>
+                        <h3 style="font-size: 20px;" >Total: {{ total_appointments }} </h3>  
+                    </div>
+                    <div class="icon">
+                        <i class='bx bxs-calendar-check' style="font-size: 50px;"></i> <!-- Set the font-size to adjust the icon size -->
+                    </div>
+
+                    <a href="{% url 'doctor_appointments' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                    <div class="inner">
+                     
+                        <p style="font-size: 22px;">Patient Discharge </p>
+                        <h4 style="font-size: 20px;">My Admited Patients: 1</h4>
+                    </div>
+                    <div class="icon">
+                        <i class='bx bxs-eject' style="font-size: 50px;"></i>
+                    </div>
+                    <a href="{% url 'dicharge_patient' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner" style="padding: 25px;">
+                        <!-- <h3>{{ nurse_count }}</h3> -->
+        
+                        <p style="font-size: 22px;" >Settings</p>
+                        </div>
+                        <div class="icon">
+                            <i class='bx bx-cog' style="font-size: 50px;"></i>
+                        </div>
+                        <a href="{% url 'doctor_settings' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+          
+          
+        </div>
+          
+      </section> 
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  {% endblock custom_js %}

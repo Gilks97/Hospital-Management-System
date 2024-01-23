@@ -1,0 +1,26 @@
+
+# Ignore database file
+db.sqlite3
+
+# Ignore Python byte-code
+__pycache__/
+*.pyc
+
+accounts/migrations/
+database.db
+
+# Ignore all images in the media folder except the default_profile_pic.jpeg
+/media/*
+!/media/profile_pics/default_profile_pic.jpeg
+!/media/background.jpg
+!/media/hims1.jpg
+!/media/hicon4.jpg
+
+# Ignore Django migration files
+**/migrations/*.py
+**/migrations/*.pyc
+**/db.sqlite3
+*.pyc
+/venv/*
+**/db.sqlite3~aae64579b5f6279c535e22341a5bd3b2aa8c389d/*
+**/__pycache__/*

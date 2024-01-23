@@ -1,0 +1,62 @@
+{% extends 'registration_clerk_template/base_template.html' %}
+
+{% block page_title %}
+    Registration Clerk Profile
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">My Profile</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card-content" style="margin-left: 25px;">
+                        <div>
+                            <h3>Personal Information</h3>
+                            <p>Username: {{ registration_clerk.admin.username }}</p>
+                            <p>Email: {{ registration_clerk.admin.email }}</p>
+                            <p>First Name: {{ registration_clerk.admin.first_name }}</p>
+                            <p>Last Name: {{ registration_clerk.admin.last_name }}</p>
+                        </div>
+                        
+                        <div>
+                            <h3>Contact Information</h3>
+                            <p>Mobile: {{ registration_clerk.mobile }}</p>
+                            <p>Address: {{ registration_clerk.address }}</p>
+                        </div>
+
+                        <div>
+                            <h3>Department Information</h3>
+                            <p>Special: {{ registration_clerk.special }}</p>
+                        </div>
+
+                        <div class="col">
+                            <a class="btn btn-primary" href="{% url 'edit_registration_clerk_profile' %}" role="button">Edit Profile</a>
+                        </div>
+                        <br>
+
+
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}
+
+    {% block custom_js %}
+
+  {% endblock custom_js %}

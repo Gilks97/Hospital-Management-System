@@ -1,0 +1,84 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #008080;" (Hex: #008080)>
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'dist/img/hicon4.jpg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-large">TIBA Hospital</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user1-128x128.jpg' %}" class="img-circle elevation-4" alt="User Image" style="width: 100px; height: 100px;">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{user.username}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+              {% url 'accountant_home' as accountant_home %}
+              <a href="{{ accountant_home }}" class="nav-link {% if request.path == accountant_home %} active {% endif %}">
+                <i class='bx bxs-clinic'></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              {% url 'patient' as patient %}
+              <a href="{{ patient }}" class="nav-link {% if request.path == patient %} active {% endif %}">
+                <i class='bx bx-pulse'></i>
+                <p>
+                  Patient
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'appointment' as appointment %}
+              <a href="{{ appointment }}" class="nav-link {% if request.path == appointment %} active {% endif %}">
+                <i class='bx bxs-calendar'></i>
+                <p>
+                  Appointment
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'services' as services %}
+              <a href="{{ services }}" class="nav-link {% if request.path == services %} active {% endif %}">
+                <i class='bx bx-shield-plus'></i>
+                <p>
+                  Services
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'profile' as profile %}
+              <a href="{{ profile }}" class="nav-link {% if request.path == profile %} active {% endif %}">
+                <i class='bx bx-user-circle'></i>
+                <p>
+                  profile
+                </p>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>

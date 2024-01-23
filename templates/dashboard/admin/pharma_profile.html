@@ -1,0 +1,47 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}pharmacist profile{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">My Profile</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-content" style="margin-left: 25px;">
+                    <div>
+                        <h3>Personal Information</h3>
+                        <p>Username: {{ pharma.admin.username }}</p>
+                        <p>Email: {{ pharma.admin.email }}</p>
+                        <p>First Name: {{ pharma.admin.first_name }}</p>
+                        <p>Last Name: {{ pharma.admin.last_name }}</p>
+                    </div>
+                    
+                    <div>
+                        <h3>Contact Information</h3>
+                        <p>Mobile: {{ pharma.mobile }}</p>
+                        <p>Address: {{ pharma.address }}</p>
+                    </div>
+
+                   
+                    <div class="col">
+                        <a class="btn btn-primary" href="{% url 'edit_pharmacist_profile' %}" role="button">Edit Profile</a>
+                    </div>
+                    <br>
+
+
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+  </section>
+  {% endblock %}

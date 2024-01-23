@@ -1,0 +1,115 @@
+{% extends 'registration_clerk_template/base_template.html' %}
+
+{% block page_title %}
+    Book Appointment
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Book Appointment</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'book_appointment' registered_patient_id=registered_patient.id  %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% comment %} Display Messages {% endcomment %}
+                            {% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+
+                        <div class="card-body">
+                            <div class="form-row">
+
+                                <input type="hidden" name="registration_clerk_id" value="{{ registration_clerk.id }}">
+                                <input type="hidden" name="doctor_id" value="">
+                                <input type="hidden" name="registered_patient_id" value="{{ registered_patient.id }}">
+                                <div class="form-group col">
+                                    <label for ="date ">Date:</label>
+                                    <input type="date" name="date" required>
+                                </div>
+                                <div class="form-group col">
+                                    <label for="time">Time:</label>
+                                    <input type="time" name="time" required>
+                                </div>
+                                
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="doctor">Select Doctor:</label>
+                                    <select name="doctor_id" required>
+                                        <option value="">-- Select Doctor --</option>
+                                        {% for doctor in doctors %}
+                                            <option value="{{ doctor.id }}">Dr.{{ doctor.admin.first_name }} {{ doctor.admin.last_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                        
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Book Appointment</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-primary" href="/register_patient" role="button">Register New Patient</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary" href="/registered_patient_list" role="button">Back</a>
+                    </div>
+                    <div class="col-6"></div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock main_content %}
+
+{% block custom_js %}
+{% endblock custom_js %}
+
+

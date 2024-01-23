@@ -1,0 +1,30 @@
+{% extends 'dashboard/customer/base.html' %}
+{% block title %}Create customer Profile{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary" style="max-width: 600px; margin: 0 auto; border-radius: 20px;">
+            <div class="card-header">
+                <h3>Create customer Profile</h3>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {{form}}
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Create Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

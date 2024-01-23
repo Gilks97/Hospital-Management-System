@@ -1,0 +1,144 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #008080;" (Hex: #008080)>
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'dist/img/hicon4.jpg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-large">TIBA Hospital</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user1-128x128.jpg' %}" class="img-circle elevation-4" alt="User Image" style="width: 100px; height: 100px;">
+        </div>
+        <div class="info">
+          <a href={% url "admin_hims_profile" %} class="d-block">{{user.username}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+              {% url 'admin_home' as admin_home %}
+              <a href="{{ admin_home }}" class="nav-link {% if request.path == admin_home %} active {% endif %}">
+                <i class='bx bxs-clinic'></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              {% url 'department' as department %}
+              <a href="{{ department }}" class="nav-link {% if request.path == department %} active {% endif %}">
+                <i class='bx bx-customize'></i>
+                <p>
+                  Department
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'doctor' as doctor %}
+              <a href="{{ doctor }}" class="nav-link {% if request.path == doctor %} active {% endif %}">
+                <i class='bx bx-first-aid'></i>
+                <p>
+                  Doctor
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'nurse' as nurse %}
+              <a href="{{ nurse }}" class="nav-link {% if request.path == nurse %} active {% endif %}">
+                <i class='bx bx-injection'></i>
+                <p>
+                  Nurse
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'patient' as patient %}
+              <a href="{{ patient }}" class="nav-link {% if request.path == patient %} active {% endif %}">
+                <i class='bx bx-pulse'></i>
+                <p>
+                  patient
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'pharmacist' as pharmacist %}
+              <a href="{{ pharmacist }}" class="nav-link {% if request.path == pharmacist %} active {% endif %}">
+                <i class='bx bxs-capsule'></i>
+                <p>
+                  Pharmacist
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              {% url 'laboratorist' as laboratorist %}
+              <a href="{{ laboratorist }}" class="nav-link {% if request.path == laboratorist %} active {% endif %}">
+                <i class='bx bxs-vial'></i>
+                <p>
+                  laboratorist
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'accountant' as accountant %}
+              <a href="{{ accountant }}" class="nav-link {% if request.path == accountant %} active {% endif %}">
+                <i class='bx bxs-coin-stack'></i>
+                <p>
+                  accountant
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'registration_clerk' as registration_clerk %}
+              <a href="{{ registration_clerk }}" class="nav-link {% if request.path == registration_clerk %} active {% endif %}">
+                <i class='bx bx-spreadsheet'></i>
+                <p>
+                  Registration Clerk
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'settings' as settings %}
+              <a href="{{ settings }}" class="nav-link {% if request.path == settings %} active {% endif %}">
+                <i class='bx bx-cog' ></i>
+                <p>
+                  settings
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'admin_profile' as admin_profile %}
+              <a href="{{ admin_profile }}" class="nav-link {% if request.path == admin_profile %} active {% endif %}">
+                <i class='bx bx-user-circle'></i>
+                <p>
+                  profile
+                </p>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>

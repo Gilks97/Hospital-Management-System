@@ -1,0 +1,99 @@
+{% extends 'laboratorist_template/base_template.html' %}
+
+{% load static %}
+
+
+{% block custom_css %}
+
+  <style>
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4f9dea;
+      color: white;
+    }
+    </style>
+{% endblock custom_css %}
+    
+
+{% block main_content %}
+<div class="container">
+  <div class="row" style="justify-content: space-between; display: flex; align-items: center;">
+    <div class="col-md-10">
+      <h1>Diagnosis Report</h1>
+    </div>
+    <div class="col-md-2 text-end">
+      <button class="btn btn-primary text-align-end" type="submit"><a style="color: white;" href="{% url 'add_donor' %}">Add Record</a></button>
+    </div>
+    
+    
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 table-responsive">
+      <table class="table  table-striped" id="customers">
+        <tr>
+            <th>#</th>
+            <th>Donor's Name</th>
+            <th>Blood Type</th>
+            <th>Age</th>
+            <th>Weight</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+        <!-- <tr>
+            <td>1</td>
+            <td>Alan Mutheu</td>
+            <td>A+</td>
+            <td>22</td>
+            <td>76</td>
+            <td>0795850801</td>
+            <td>Nairobi, Kenya</td>
+            <td>11/07/2023 12:00 am</td>
+            <td>
+                <a type="button"class="btn btn-warning btn-sm" href="#"> <iconify-icon icon="nimbus:edit"></iconify-icon></a>
+                <a type="button"class="btn btn-danger btn-sm" href="#"> <iconify-icon icon="streamline:interface-delete-bin-2-remove-delete-empty-bin-trash-garbage"></iconify-icon></a>
+              </td>
+        </tr> -->
+        {% for report in donor_details %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td> {{report.donors_name}} </td>
+            <td>{{report.blood_type}}</td>
+            <td>{{report.age}}</td>
+            <td>{{report.weight}}</td>
+            <td>{{report.mobile}}</td>
+            <td>{{report.location}}</td>
+            <td>{{report.date_taken}}</td>
+            <td>
+              <a type="button"class="btn btn-warning btn-sm" href="{% url 'edit_donor' report.id %}"> <iconify-icon icon="nimbus:edit"></iconify-icon></a>
+              <a type="button"class="btn btn-danger btn-sm" href="{% url 'delete_donor' report.id %}"> <iconify-icon icon="streamline:interface-delete-bin-2-remove-delete-empty-bin-trash-garbage"></iconify-icon></a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content%}

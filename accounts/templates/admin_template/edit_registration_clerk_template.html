@@ -1,0 +1,130 @@
+{% extends 'admin_template/base_template.html' %}
+
+{% block page_title %}
+    Registration Clerk | Username: {{ registration_clerk.admin.username }} | #ID : {{ registration_clerk.id }}
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Registration Clerk</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'edit_registration_clerk_save' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                            
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" value="{{ registration_clerk.admin.email }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" value="{{ registration_clerk.admin.username }}">
+                            </div>
+
+                            {% comment %} <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" value="{{ registration_clerk.admin.password }}">
+                            </div> {% endcomment %}
+
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="first_name" value="{{ registration_clerk.admin.first_name }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="last_name" value="{{ registration_clerk.admin.last_name }}">
+                                <input type="hidden" name="registration_clerk_id" value="{{ registration_clerk.admin.id }}" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Mobile</label>
+                                <input type="text" class="form-control" name="mobile" value="{{ registration_clerk.mobile }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" name="address">{{ registration_clerk.address }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Special</label>
+                                <input type="text" class="form-control" name="special" value="{{ registration_clerk.special }}">
+                            </div>  
+                            
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control" name="profile_pic" placeholder="Special">
+                            </div>
+
+     
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">Update Clerk</button>
+                                </div>
+                                <div class="col">
+                                  <a class="btn btn-primary" href="/manage_registration_clerk" role="button">Back</a>
+                                </div>
+                                <div class="col-6"></div>
+                              </div>
+                        </div>
+                        
+                        
+                        
+                    </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock main_content %}

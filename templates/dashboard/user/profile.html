@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height: 200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+<br>
+<h4>Account Details</h4>
+<hr>
+<div class="row">
+    
+    <div class="col-md-3">
+        <br>
+        <div class="card card-body" style="height: 480px;">
+            <a class="btn btn-warning" href="{% url 'home' %}">Back to Dashboard</a>
+            <hr class="hr hr-blurry">
+            <h3 style="text-align:center;">Profile Picture</h3>
+            <small class="text" style="text-align: center; font-size:11px;">( 400x400, 1600x1600 )</small>
+            <hr class="hr hr-blurry">
+            <img class="profile-pic" src="{{profile.profile_pic.url}}">
+
+            <hr class="hr hr-blurry">
+            <small class="text-muted" style="text-align: center; font-size:18px;">Stack - {{profile.bio}}</small>
+            <hr class="hr hr-blurry">
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <br>
+        <div class="card card-body" style="height: 480px;">
+
+            <h4 style="text-align:center;">Details</h4>
+            <hr>
+            <table class="table table-striped" style="display: inline-block; height: 400px; overflow: auto;">
+                <thead>
+                    <tr>
+                        <th scope="col">Name:</th>
+                        <th scope="col">{{user.first_name}} {{user.last_name}}</th>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="col">Phone Number:</th>
+                        <th scope="col">{{profile.phone}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Email:</th>
+                        <th scope="col">{{user.email}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Date created:</th>
+                        <th scope="col">{{profile.date_created}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Username:</th>
+                        <th scope="col" class='text-muted'>{{profile.user.username}}</th>
+                </thead>
+                
+            </table>
+
+            <p style="color:green; text-align:center;">
+                <b>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{message}}
+                        {% endfor %}
+                    {% endif %}
+                </b>
+            </p>
+            
+            <hr>
+
+            <div class="text-center">
+                <a class="btn btn-primary" href="{% url 'edit_profile' %}" style="width:200px;">Settings</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% endblock %}

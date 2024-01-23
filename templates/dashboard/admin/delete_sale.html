@@ -1,0 +1,37 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}delete sale{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="content" >
+    <div class="container-fluid">
+        <div class="card card-primary" style="max-width:600px;margin:0 auto ;border-radius:20px;">
+            <div class="card-header">
+                <h3>delete sale</h3>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% if messages %} 
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        <h4>Are you sure you want to delete this sale?</h4>
+                        
+                            <tr><td style="font-size:1.4em;">User: {{ sale.user }}</td></tr>
+                            <tr><td style="font-size: 1.4em;">Item: {{ sale.item }}</td></tr>
+                            <tr><td style="font-size: 1.4em;">Items Available: {{ sale.items_available }}</td></tr>
+                        
+                        <!-- Display other relevant fields as needed -->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger" style="margin-left: 4rem;">Delete</button>
+               <a href="{% url 'sale_list' %}" class="btn btn-primary">cancel</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'dashboard/admin/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'contain.css' %}">
+{% if results %}
+<div class="container" style="margin-left:0;">
+    <h2>Search Results</h2>
+    
+    <div class="row"style="display: flex;">
+        {% for drug in results %}
+        <div class="col-lg-4 col-md-5 col-sm-6">
+           
+            <div class="drug-card">
+                <p class="drug-category">Category: {{ drug.category_name }}</p>
+                <img src="{{ drug.item.url }}" class="drug-img" alt="...">
+                <div class="drug-info">
+                    <h5 class="drug-title">{{ drug.item_name }}</h5>
+                    <p class="drug-price">KSH: {{ drug.unit_price }}</p>
+                    <a href="{% url 'edit_product' drug.id %}" class="btn btn-primary drug-edit-btn">Edit</a>
+                </div>
+            </div>
+           
+        </div>
+        {% endfor %}
+        {% else %}
+                <p>No results found.</p>
+            {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

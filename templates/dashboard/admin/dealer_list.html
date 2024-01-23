@@ -1,0 +1,61 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}dealer_list{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">List dealers</h3>
+          </div>
+         
+          <div class="card-body">
+            <a href="{% url 'create_dealer' %}" class="btn btn-primary btn-lg" style="margin-bottom: 20px;">Add dealer</a>
+            <table class="table table-striped">
+                {% if messages %} {% for message in messages %}
+                {{ message }}
+                {% endfor %}{% endif %}
+
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>name</th>
+                  <th>address</th>
+                  <th>phone number</th>
+                  <th>email</th>
+                  <th>message</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dealer in dealers %}
+                <tr>
+                  <td>{{ dealer.id }}</td>
+                  <td>{{dealer.dname}}</td>
+                  <td>{{ dealer.address }}</td>
+                  <td>{{ dealer.phn_no}}</td>
+                  <td>{{ dealer.email }}</td>    
+                  <td><a href="{% url 'message_dealer' dealer.id %}" class="btn btn-success btn-sm">mail</a></td>            
+                  <td>
+                    <a href="{% url 'edit_dealer' dealer.id %}" class="btn btn-primary btn-sm">Edit</a>
+                  </td>
+                  <td>
+                    <a href="{% url 'delete_dealer' dealer.id %}" class="btn btn-danger btn-sm">Delete</a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="10">No dealers found.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

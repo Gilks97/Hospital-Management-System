@@ -1,0 +1,72 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}sale_list{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">List Sales</h3>
+          </div>
+         
+          <div class="card-body">
+            <a href="{% url 'create_sale' %}" class="btn btn-primary btn-lg" style="margin-bottom: 20px;">Add Sale</a>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User</th>
+                  <th>Item</th>
+                 
+                  <th>Items Available</th>
+                  <th>items_bought</th>
+                  <th>Sold Quantity</th>
+                  <th>expired</th>
+                  <th>Expiry Date</th>
+                  <th>Date Bought</th>
+                  <th>status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for sale in sales %}
+                <tr>
+                  <td>{{ sale.pk }}</td>
+                  <td>{{ sale.user }}</td>
+                  <td>{{ sale.item }}</td>
+                 
+                  <td>{{ sale.items_available }}</td>
+                  <td>{{sale.bought}}</td>
+                  <td>{{ sale.sold }}</td>
+                  <td>{{ sale.expired }}</td>
+                  <td>{{ sale.expiry_date }}</td>
+                  <td>{{ sale.date_bought }}</td>
+                  <td>{% if sale.expired >= 1 %}
+                       <i class="bi bi-exclamation-octagon-fill" style="color:red;font-size:1.7rem;"></i>
+                      {% else %}
+                      <i class="bi bi-check-circle" style="color:greenyellow;font-size:1.7rem;"></i>
+                      {% endif %}
+                  </td>
+                  <td>
+                    <a href="{% url 'edit_sale' sale.id %}" class="btn btn-primary btn-sm">Edit</a>
+                  </td>
+                  <td>
+                    <a href="{% url 'delete_sale' sale.id %}" class="btn btn-danger btn-sm">Delete</a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="10">No sales found.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

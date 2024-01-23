@@ -1,0 +1,50 @@
+{% extends 'registration_clerk_template/base_template.html' %}
+
+{% block page_title %}
+    Cancel Appointment
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<style>
+    .center-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+    }
+    
+    .custom-card {
+        width: 900px; /* Adjust the width as needed */
+        border-radius: 10px;
+    }
+</style>
+
+<section class="content">
+    <div class="container-fluid center-card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary custom-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Cancel Appointment</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'cancel_appointment' appointment.id %}">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <p>Are you sure you want to cancel the appointment for <strong> {{ appointment.registered_patient }}</strong> with <strong>{{ appointment.doctor }}</strong> on <strong>{{ appointment.date }}</strong> at <strong>{{ appointment.time }}</strong>?</p>
+                                <input type="hidden" name="confirm" value="yes">
+                                <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+                                <a href="{% url 'manage_appointment' %}" class="btn btn-secondary">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock main_content %}

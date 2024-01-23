@@ -1,0 +1,73 @@
+{% extends 'dashboard/customer/base.html' %}
+{% block title %}order{% endblock %}
+
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="(% static 'order.css' %)">
+<div class="container">
+     <div class="container-fluid" style="width: 500px;">
+        <div class="drug-card" >
+            <p class="drugs-category">Category: {{ drugs.category_name }}</p>
+            <img src="{{ drugs.item.url }}" class="drugs-img" alt="..." style="height: 200px;">
+            <div class="drugs-info">
+                <h5 class="drugs-title">{{ drugs.item_name }}</h5>
+                <p class="drugs-price">KSH: {{ drugs.unit_price }}</p>
+                <form action="" method="post" class="row g-3">
+                    {% csrf_token %}
+                     <div class="col-auto">
+                        {{form}}
+                     </div>
+                     <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3">save</button>
+                      </div>
+                </form>
+                <h6 class="drugs-title">Total price: {{drugs.total}}</h6>
+                <a href="" class="btn btn-success " style="margin-bottom:30px; margin: top 10px;">Checkout</a>
+            </div>
+        </div>
+     </div>  
+</div>
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">list medicine</h3>
+            </div>
+           
+            <div class="card-body">
+             
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>user name</th>
+                    <th>item name</th>
+                    <th>quantity</th>
+                    <th>total cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for drug in order %}
+                  <tr>
+                    <td>{{ drug.user }}</td>
+                    <td>{{ drug.product}}</td>
+                    <td>{{ drug.quantity }}</td>
+                    <td>{{ drug.total_cost}}</td>  
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="8">No items found.</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+{% endblock %}

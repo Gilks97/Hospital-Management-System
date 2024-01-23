@@ -1,0 +1,175 @@
+{% extends 'registration_clerk_template/base_template.html' %}
+
+{% block page_title %}
+    Patient Registration
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Register Patient</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="{% url 'register_patient_save' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% comment %} Display Messages {% endcomment %}
+                            {% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Patient's First Name</label>
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Patient's Last Name</label>
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Gender</label>
+                                    <select class="form-control" name="gender" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Mobile</label>
+                                    <input type="text" class="form-control" name="mobile" placeholder="Mobile" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number" required>
+                                </div>
+                                
+                                <div class="form-group col">
+                                    <label>Date of Birth</label>
+                                    <input type="date" class="form-control" name="date_of_birth" required>
+                                </div>
+
+                                <div class="form-group col">
+                                    <label>Patient Type</label>
+                                    <select class="form-control" name="patient_type" required>
+                                        <option value="Outpatient">Outpatient</option>
+                                        <option value="Inpatient">Inpatient</option>
+                                    </select>
+                                </div>
+                               
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Height (in cm)</label>
+                                    <input type="number" class="form-control" name="height" placeholder="Height" required>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Weight (in kg)</label>
+                                    <input type="number" class="form-control" name="weight" placeholder="Weight" required>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Category</label>
+                                    <input type="text" class="form-control" name="category" placeholder="Category" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Condition</label>
+                                    <select class="form-control" name="condition" required>
+                                        <option value="Mild">Mild</option>
+                                        <option value="Critical">Critical</option>
+                                    </select>
+                                </div>
+
+                           
+                                <div class="form-group col">
+                                    <label>Address</label>
+                                    <textarea class="form-control" name="address" placeholder="Address" required></textarea>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Register Patient</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-primary" href="/register_patient" role="button">Register New Patient</a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary" href="/registered_patient_list" role="button">Manage Patient</a>
+                    </div>
+                    <div class="col-6"></div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock main_content %}
+
+{% block custom_js %}
+<script>
+    function calculateBMI() {
+        var height = parseFloat(document.getElementById('height').value);
+        var weight = parseFloat(document.getElementById('weight').value);
+
+        if (height && weight) {
+            var bmi = (weight / (height * height)).toFixed(2);
+            document.getElementById('bmi').value = bmi;
+        } else {
+            document.getElementById('bmi').value = '';
+        }
+    }
+
+    // Call the calculateBMI function whenever height or weight changes
+    document.getElementById('height').addEventListener('input', calculateBMI);
+    document.getElementById('weight').addEventListener('input', calculateBMI);
+
+    // Calculate the BMI on page load in case height and weight have default values
+    calculateBMI();
+</script>
+{% endblock custom_js %}
+
+

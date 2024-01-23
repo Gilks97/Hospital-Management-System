@@ -1,0 +1,25 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}dashboard{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="content">
+  <div class="container-fluid">
+      <div class="card card-primary" style="max-width:600px;margin:0 auto ;border-radius: 20px;">
+          <div class="card-header">
+              <h3>edit product</h3>
+          </div>
+          <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+           
+              <div class="card-body">
+                  <div class="form-group">
+                      {{product}}
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">submit</button>
+          </form>
+      </div>
+  </div>
+</section>
+{% endblock %}

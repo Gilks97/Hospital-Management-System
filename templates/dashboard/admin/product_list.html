@@ -1,0 +1,49 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}product_list{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">list drugs</h3>
+          </div>
+         
+          <div class="card-body">
+            <a href="{% url 'create_product' %}" class="btn btn-primary btn-lg" style="margin-bottom: 20px;">add drug</a>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>category name</th>
+                  <th>item name</th>
+                  <th>item</th>
+                  <th> unit_price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for drug in drugs %}
+                <tr>
+                  <td>{{ drug.category_name }}</td>
+                  <td>{{ drug.item_name}}</td>
+                  <td ><img src="{{ drug.item.url }}" alt="" style="height: 50px;width: 50px;"></td>
+                  <td>{{ drug.unit_price}}</td>
+                  <td><a href="{% url 'edit_product' drug.id %}" class="btn btn-primary btn-sm">Edit</a></td>
+                  <td> <a href="{% url 'delete_product' drug.id %}" class="btn btn-danger btn-sm">delete</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="8">No products found.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'laboratorist_template/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+<h2>Home</h2>
+
+<section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+
+            
+            <!-- ./col -->
+            <div class="row">
+
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner" style="padding: 30px;">
+                        
+                            <p style="font-size: 22px;">Change Password</p>
+                            <!-- <h4 style="font-size: 20px;">Donors : {{ total_donors }}</h4> -->
+                        </div>
+                        <div class="icon">
+                            <i class='bx bxs-lock'></i>
+                        </div>
+                        <a href="{% url 'add_donor_report' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner" style="padding: 30px;">
+                            <p style="font-size: 22px;">Edit Profile</p>
+                            <!-- <h3 style="font-size: 20px;">Blood donated: 4</h3>    -->
+                        </div>
+                        <div class="icon">
+                            <i class='bx bxs-edit'></i>
+                        </div>
+
+                        <a href="{% url 'blood_bank' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-6">
+                <!-- small box -->
+                    <div class="small-box bg-warning"  >
+                        <div class="inner" style="padding: 30px;">
+                        
+                            <p style="font-size: 22px;">Logout</p>
+                            <!-- <h3 style="font-size: 20px;">Diagnosis : {{ total_diagnosis }}</h3> -->
+
+                        </div>
+                        <div class="icon">
+                            <!-- <i class='bx bx-first-aid'></i> -->
+                            <i class='bx bxs-log-out'></i>
+                        
+                        </div>
+                        <a href="{% url 'logout_user' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+            
+            </div>
+
+          
+          
+        </div>
+          
+      </section> 
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  {% endblock custom_js %}

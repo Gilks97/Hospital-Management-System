@@ -1,0 +1,113 @@
+{% extends 'laboratorist_template/base_template.html' %}
+
+{% load static %}
+
+
+{% block custom_css %}
+
+  <style>
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4f9dea;
+      color: white;
+    }
+    </style>
+{% endblock custom_css %}
+    
+
+{% block main_content %}
+<div class="container">
+  <div class="row" style="justify-content: space-between; display: flex; align-items: center;">
+    <div class="col-md-10">
+      <h1>Blood Bank Report</h1>
+    </div>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 table-responsive">
+      <table class="table  table-striped" id="customers">
+        <tr>
+            <th>#</th>
+            <th>Blood Type</th>
+            <th>Total</th>
+
+        </tr>
+        
+        <tr>
+            <td>1</td>
+            <td>A+</td>
+            <td>{{type_1}}</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>A-</td>
+            <td>{{type_2}}</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>B+</td>
+            <td>{{type_3}}</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>B-</td>
+            <td>{{type_4}}</td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td>AB+</td>
+            <td>{{type_5}}</td>
+        </tr>
+
+        <tr>
+            <td>6</td>
+            <td>AB-</td>
+            <td>{{type_6}}</td>
+        </tr>
+
+        <tr>
+            <td>7</td>
+            <td>O+</td>
+            <td>{{type_7}}</td>
+        </tr>
+
+        <tr>
+            <td>8</td>
+            <td>O-</td>
+            <td>{{type_8}}</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td style="font-size: 22px; color: rgb(0, 0, 0);">Total</td>
+            <td style="font-size: 22px; color: rgb(0, 0, 0);" >{{total}}</td>
+        </tr>
+
+        </table>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content%}

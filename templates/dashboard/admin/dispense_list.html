@@ -1,0 +1,78 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}dispence_list{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">List dispense</h3>
+          </div>
+         
+          <div class="card-body">
+            
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Add dispense</th>
+                    <th>Prescription</th>
+                    <th>Doctor</th>
+                    <th>Patient Name</th>
+                    <th>Dispenses</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for prescription, dispenses in prescription_data.items %}
+                    <tr>
+                      <td><a href="{% url 'dispense' prescription.id %}" class="btn btn-primary btn-lg" style="margin-bottom: 20px;">Add dipense</a></td>
+                      <td>{{ prescription.prescription }}</td>
+                      <td>{{ prescription.doctor }}</td>
+                      <td>{{ prescription.patientname }}</td>
+                      <td>
+                        {% if dispenses %}
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Medicine</th>
+                                <th>Quantity</th>
+                                <th>Dispense Date</th>
+                                <th>Remarks</th>
+                                <th>Taken</th>
+                                <th>action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for dispense in dispenses %}
+                                <tr>
+                                  <td>{{ dispense.medicine }}</td>
+                                  <td>{{ dispense.quantity }}</td>
+                                  <td>{{ dispense.dispense_date }}</td>
+                                  <td>{{ dispense.remarks }}</td>
+                                  <td>{% if dispense.taken %}Yes{% else %}No{% endif %}</td>
+                                  <td>
+                                    <a href="{% url 'edit_dispense' prescription.id dispense.id  %}" class="btn btn-primary btn-sm">Edit</a>
+                                  
+                                    <a href="{% url 'delete_dispense' prescription.id dispense.id   %}" class="btn btn-danger btn-sm">Delete</a>
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        {% else %}
+                          <p>No dispenses found for this prescription.</p>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>              
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

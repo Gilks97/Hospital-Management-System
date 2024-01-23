@@ -1,0 +1,82 @@
+{% extends 'dashboard/customer/base.html' %}
+{% block title %}dashboard{% endblock %}
+
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'contain.css' %}">
+<div class="col-lg-3 col-6" style="margin-top: 10px; height:auto;">
+    <!-- small box -->
+    <div class="bg" style="height:120px;width: 400px;background-color: #ecb348;">
+      <div class="inner" style="padding-left: 50px;">
+        <h3>{{drugs_count}}</h3>
+        <p>Total drugs</p>
+      </div>
+      <div class="icon">
+        <i class="bi bi-bar-chart" style="font-size: 2rem; color: red;"></i>
+      </div>
+    </div>
+</div>
+
+<div class="container" style="margin-left:0;">
+    <div class="row">
+        {% for drug in products %}
+        <div class="col-lg-3 col-md-5 col-sm-6">
+            <div class="drug-card">
+                <p class="drug-category">Category: {{ drug.category_name }}</p>
+                <img src="{{ drug.item.url }}" class="drug-img" alt="...">
+                <div class="drug-info">
+                    <h5 class="drug-title">{{ drug.item_name }}</h5>
+                    <p class="drug-price">KSH: {{ drug.unit_price }}</p>
+                    <button class="btn btn-primary " value="{{drug.id}}">add to cart</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+
+let btns=document.querySelectorAll(".drug-card button")
+btns.forEach(btn=>{
+    btn.addEventListener("click",addtocart)
+})
+function addtocart(e){
+    let product_id=e.target.value;
+    console.log(product_id)
+    let url="{% url 'dash:add_to_cart' %}"
+    let data={id:product_id}
+    fetch(url,{
+        method:"POST",
+        headers:{"Content-Type":"application/json",'X-CSRFToken': csrftoken},
+        body:JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        document.getElementById('num').innerHTML=data
+        console.log(data)
+    } )
+    .catch(error=>{
+        console.log(error)
+    })
+}
+</script>
+{% endblock %}

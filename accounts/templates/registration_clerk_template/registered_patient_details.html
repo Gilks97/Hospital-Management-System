@@ -1,0 +1,60 @@
+{% extends 'registration_clerk_template/base_template.html' %}
+
+{% block page_title %}
+    Patient Details
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Patient Details</h3>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-content" style="margin-left: 25px;">
+                        <div class="card-body table-responsive p-0">
+                            <p><strong>Name:</strong> {{ registered_patient.first_name }} {{ registered_patient.last_name }}</p>
+                            <p><strong>Gender:</strong> {{ registered_patient.gender }}</p>
+                            <p><strong>Date of Birth:</strong> {{ registered_patient.date_of_birth }}</p>
+                            <p><strong>Age:</strong> {{ registered_patient.age }}</p>
+                            <p><strong>Mobile:</strong> {{ registered_patient.mobile }}</p>
+                            <p><strong>Address:</strong> {{ registered_patient.address }}</p>
+                            <p><strong>Patient Type:</strong> {{ registered_patient.patient_type }}</p>
+                            <p><strong>Condition:</strong> {{ registered_patient.condition }}</p>
+                            <p><strong>Category:</strong> {{ registered_patient.category }}</p>
+                            <p><strong>Height:</strong> {{ registered_patient.height }}</p>
+                            <p><strong>Weight:</strong> {{ registered_patient.weight }}</p>
+                            <p><strong>BMI:</strong> {{ registered_patient.bmi }}</p>
+                            <div class='row'>
+                                <div class="col">
+                                    <a class="btn btn-primary" href={% url 'registered_patient_list' %} role="button">Back</a>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-primary" href={% url 'generate_pdf' registered_patient.id %} role="button">Export as PDF</a>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock main_content %}

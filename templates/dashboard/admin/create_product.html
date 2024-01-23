@@ -1,0 +1,27 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block title %}create product{% endblock %}
+{% block content %}
+<section class="content" >
+    <div class="container-fluid">
+        <div class="card card-primary" style="max-width:600px;margin:0 auto ;border-radius:20px;">
+            <div class="card-header">
+                <h3>add drug</h3>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% if messages %} {% for message in messages %}
+                {{ message }}
+
+                {% endfor %}{% endif %}
+
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        {{form}}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-left:4rem ;">submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

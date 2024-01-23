@@ -1,0 +1,74 @@
+{% extends 'dashboard/customer/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'contain.css' %}">
+<div class="container" style="margin-left:0;">
+    <h2>Search Results</h2>
+    <div class="row">
+        {% if results %}
+        {% for drug in results %}
+        <div class="col-lg-3 col-md-5 col-sm-6">
+           
+            <div class="drug-card">
+                <p class="drug-category">Category: {{ drug.category_name }}</p>
+                <img src="{{ drug.item.url }}" class="drug-img" alt="...">
+                <div class="drug-info">
+                    <h5 class="drug-title">{{ drug.item_name }}</h5>
+                    <p class="drug-price">KSH: {{ drug.unit_price }}</p>
+                    <button class="btn btn-primary " value="{{drug.id}}">add to cart</button>
+            </div>
+            
+        </div>
+        </div>
+        {% endfor %}
+        {% else %}
+                <p>No results found.</p>
+            {% endif %}
+    </div>
+
+</div>
+<script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+
+let btns=document.querySelectorAll(".drug-card button")
+btns.forEach(btn=>{
+    btn.addEventListener("click",addtocart)
+})
+function addtocart(e){
+    let product_id=e.target.value;
+    console.log(product_id)
+    let url="{% url 'dash:add_to_cart' %}"
+    let data={id:product_id}
+    fetch(url,{
+        method:"POST",
+        headers:{"Content-Type":"application/json",'X-CSRFToken': csrftoken},
+        body:JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        document.getElementById('num').innerHTML=data
+        console.log(data)
+    } )
+    .catch(error=>{
+        console.log(error)
+    })
+}
+</script>
+{% endblock %}

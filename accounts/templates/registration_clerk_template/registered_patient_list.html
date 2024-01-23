@@ -1,0 +1,61 @@
+{% extends 'registration_clerk_template/base_template.html' %}
+
+{% block page_title %}
+    Patient List
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Patients List</h3>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for registered_patient in registered_patients %}
+                                <tr>
+                                    <td>{{registered_patient.id}}</td>
+                                    <td>{{registered_patient.first_name}}</td>
+                                    <td>{{registered_patient.last_name}}</td>
+                                    <td>
+                                        <a href="{% url 'registered_patient_details' registered_patient.id %}" class="btn btn-success">View</a> 
+                                        <a href="{% url 'edit_registered_patient' registered_patient.id %}" class="btn btn-primary">Edit</a>
+                                        <a href="{% url 'delete_registered_patient' registered_patient.id %}" class="btn btn-danger">Delete</a>
+                                        <a href="{% url 'book_appointment' registered_patient.id %}" class="btn btn-primary">Book Appointment</a>
+
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock main_content %}

@@ -1,0 +1,80 @@
+{% extends 'doctor_template/base_template.html' %}
+
+{% load static %}
+
+
+{% block custom_css %}
+
+  <style>
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4f9dea;
+      color: white;
+    }
+    </style>
+{% endblock custom_css %}
+    
+
+{% block main_content %}
+<div class="container">
+  <div class="row" style="justify-content: space-between; display: flex; align-items: center;">
+    <div class="col-md-10">
+      <h1>Assigned Patients</h1>
+    </div>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 table-responsive">
+      <table class="table  table-striped" id="customers">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Patient's Name</th>
+                <th>Profile Picture</th>
+                <th>Symptoms</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                
+                <th>Action</th>
+    
+            </tr>
+          </thead>
+        
+        <tr>
+            <td>1</td>
+            <td>Test User</td>
+            <td><img style="width: 30px; height: 30px;" src="/media/profile_pics/default_profile_pic.jpeg" alt=""></td>
+            <td>Pain in the abdomen</td>
+            <td>0795850809</td>
+            <td>Nairobi,Kenya</td>
+            
+            <td>
+                <a type="button"class="btn btn-warning btn-sm" href="#"> <iconify-icon icon="nimbus:edit"></iconify-icon></a>
+                <a type="button"class="btn btn-danger btn-sm" href="#"> <iconify-icon icon="streamline:interface-delete-bin-2-remove-delete-empty-bin-trash-garbage"></iconify-icon></a>
+              </td>
+        </tr>
+
+
+        </table>
+    </div>
+  </div>
+</div>
+{% endblock main_content%}

@@ -1,0 +1,95 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #008080;" (Hex: #008080)>
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'dist/img/hicon4.jpg' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-large">TIBA Hospital</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        {% if user.doctor.profile_pic %}
+            <img src="{{ user.doctor.profile_pic.url }}" class="img-circle elevation-4" alt="Profile Picture" style="width: 100px; height: 100px;">
+        {% else %}
+            <img src="{% static 'profile_pics/default_profile_pic.jpeg' %}" alt="Default Profile Picture" style="width: 100px; height: 100px;">
+        {% endif %}
+        <div class="info">
+          <a href='{% url "doctor_profile" %}' class="d-block">{{user.username}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+              {% url 'doctor_home' as doctor_home %}
+              <a href="{{ doctor_home }}" class="nav-link {% if request.path == doctor_home %} active {% endif %}">
+                <i class='bx bxs-clinic'></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              {% url 'patient' as patient %}
+              <a href="{{ patient }}" class="nav-link {% if request.path == patient %} active {% endif %}">
+                <i class='bx bx-pulse'></i>
+                <p>
+                  Patient
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              {% url 'prescription_list' as prescription_list %}
+              <a href="{{ prescription_list }}" class="nav-link {% if request.path == prescription_list %} active {% endif %}">
+                <i class='bx bx-first-aid'></i>
+                <p>
+                  Prescription
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              {% url 'doctor_appointments' as doctor_appointments %}
+              <a href="{{ doctor_appointments }}" class="nav-link {% if request.path == doctor_appointments %} active {% endif %}">
+                <i class='bx bxs-calendar'></i>
+                <p>
+                  Appointment
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'services' as services %}
+              <a href="{{ services }}" class="nav-link {% if request.path == services %} active {% endif %}">
+                <i class='bx bx-shield-plus'></i>
+                <p>
+                  Services
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'doctor_profile' as doctor_profile %}
+              <a href="{{ doctor_profile }}" class="nav-link {% if request.path == doctor_profile %} active {% endif %}">
+                <i class='bx bx-cog'></i>
+                <p>
+                  Profile Settings
+                </p>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
